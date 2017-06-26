@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKGBot.Extract", "PKGBot.Extract\PKGBot.Extract.csproj", "{2AB58599-59BA-46ED-A2FF-955A4E12079D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKGBot.Base", "PKGBot.Base\PKGBot.Base.csproj", "{2F8DE6B0-4E50-401B-98DC-329264EC085E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKGBot.Core", "PKGBot.Core\PKGBot.Core.csproj", "{1FC8ED06-9E9D-4EDE-940B-7F7141A9F554}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKGBot.CLI", "PKGBot.CLI\PKGBot.CLI.csproj", "{3DB867EC-64AC-4AE5-B7E5-186A1116EDD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{2AB58599-59BA-46ED-A2FF-955A4E12079D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB58599-59BA-46ED-A2FF-955A4E12079D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AB58599-59BA-46ED-A2FF-955A4E12079D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8DE6B0-4E50-401B-98DC-329264EC085E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8DE6B0-4E50-401B-98DC-329264EC085E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8DE6B0-4E50-401B-98DC-329264EC085E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8DE6B0-4E50-401B-98DC-329264EC085E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FC8ED06-9E9D-4EDE-940B-7F7141A9F554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC8ED06-9E9D-4EDE-940B-7F7141A9F554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC8ED06-9E9D-4EDE-940B-7F7141A9F554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC8ED06-9E9D-4EDE-940B-7F7141A9F554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DB867EC-64AC-4AE5-B7E5-186A1116EDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB867EC-64AC-4AE5-B7E5-186A1116EDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB867EC-64AC-4AE5-B7E5-186A1116EDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB867EC-64AC-4AE5-B7E5-186A1116EDD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

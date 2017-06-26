@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PKGBot.Extract
+namespace PKGBot
 {
     public class Class1
     {
