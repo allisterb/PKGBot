@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,7 +36,7 @@ namespace PKGBot.CLI
                .CreateLogger();
             L = Log.ForContext<Program>();
 
-            var result = Parser.Default.ParseArguments<ExtractOptions>(args)
+            var result = Parser.Default.ParseArguments<ExtractOptions, TransformOptions>(args)
             .WithNotParsed((IEnumerable<Error> errors) =>
             {
                 Exit(ExitResult.INVALID_OPTIONS);
@@ -59,25 +60,13 @@ namespace PKGBot.CLI
 
         static bool Extract()
         {
-            InputFile = new FileInfo(ExtractOptions.InputFile);
-            if (!InputFile.Exists)
+            Dictionary<string, object> extract_options = new Dictionary<string, object>();
+            foreach (PropertyInfo prop in ExtractOptions.GetType().GetProperties())
             {
-                L.Error("The input file {file} does not exist.", InputFile.FullName);
-                Exit(ExitResult.INPUT_FILE_ERROR);
-                return false;
+                extract_options.Add(prop.Name, prop.GetValue(ExtractOptions));
             }
-            else
-            {
-                L.Information("Using input file {0}.", InputFile.FullName);
-                Dictionary<string, object> extract_options = new Dictionary<string, object>()
-                {
-                    {"InputFile", InputFile }
-                };
-                ExtractStage es = new ExtractStage(Log.Logger, ExtractOptions.Extractor, extract_options);
-                return true;
-            }
-           
-
+            ExtractStage ES = new ExtractStage(Log.Logger, ExtractOptions.Extractor, extract_options);
+            return ES.Extractor != null && ES.Extractor.Initialised;
         }
 
         static void Exit(ExitResult result)

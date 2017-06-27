@@ -25,7 +25,12 @@ namespace PKGBot
                 }
                 else
                 {
-                    FileInfo inputFile = (FileInfo) extract_options["InputFile"];
+                    FileInfo inputFile = new FileInfo((string) extract_options["InputFile"]);
+                    if (!inputFile.Exists)
+                    {
+                        L.Error("The input file {file} does not exist.", inputFile.FullName);
+                        return;
+                    }
                     Extractor = new LibIOZipExtractor(logger, inputFile, extract_options);
                 }
             }

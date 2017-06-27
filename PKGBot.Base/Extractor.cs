@@ -23,7 +23,8 @@ namespace PKGBot
 
         public Extractor(ILogger logger, FileInfo inputFile, Dictionary<string, object> options) : this(logger, options)
         {
-            Contract.Requires(inputFile != null);         
+            Contract.Requires(inputFile != null);
+            Contract.Requires(options.ContainsKey("OutputFile"));
             if (!inputFile.Exists)
             {
                 L.Error("The input file {file} does not exist.", inputFile);
@@ -32,6 +33,7 @@ namespace PKGBot
             else
             {
                 InputFile = inputFile;
+                OutputFile = new FileInfo((string) options["OutputFile"]);
                 this.Initialised = true;
             }
         }
@@ -42,6 +44,7 @@ namespace PKGBot
         public ILogger L { get; set; }
         public Dictionary<string, object> Options { get; protected set; }
         public FileInfo InputFile { get; protected set; }
+        public FileInfo OutputFile { get; protected set; }
         public string Authentication { get; protected set; } = string.Empty;
         #endregion
     }
