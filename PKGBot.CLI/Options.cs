@@ -8,7 +8,7 @@ using CommandLine;
 
 namespace PKGBot.CLI
 {
-    [Verb("extract", HelpText = "Extract data for packages from data sources into a SQLite database.")]
+    [Verb("extract", HelpText = "Extract packages data from data sources into a SQLite database.")]
     class ExtractOptions
     {
         [Option('f', "input-file", Required = true, HelpText = "Input data file.")]
@@ -16,6 +16,9 @@ namespace PKGBot.CLI
 
         [Option('o', "output-file", Required = true, HelpText = "Output SQLite database file.")]
         public string OutputFile { get; set; }
+
+        [Option("--overwrite", Required = false, HelpText = "Overwrite the output file if it exists.", Default = false)]
+        public bool Overwrite { get; set; }
 
         [Option('n', "--row-limit", Required = false, HelpText = "Limit the number of records to extract from the file.", Default = 0)]
         public int RecordLimit { get; set; }
@@ -30,7 +33,7 @@ namespace PKGBot.CLI
         public IEnumerable<string> ExtractParameters { get; set; }
     }
 
-    [Verb("transform", HelpText = "Transform data for packages in SQLite database.")]
+    [Verb("transform", HelpText = "Transform package data stored in SQLite database.")]
     class TransformOptions
     {
         [Option('f', "input-file", Required = true, HelpText = "Input SQLite database file.")]

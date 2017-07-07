@@ -23,6 +23,11 @@ namespace PKGBot
                     L.Error("At least 1 option is needed for the LibIO extractor: the input file.");
                     return;
                 }
+                else if (!extract_options.ContainsKey("OutputFile"))
+                {
+                    L.Error("The output file option must be specified.");
+                    return;
+                }
                 else
                 {
                     FileInfo inputFile = new FileInfo((string) extract_options["InputFile"]);
@@ -31,7 +36,23 @@ namespace PKGBot
                         L.Error("The input file {file} does not exist.", inputFile.FullName);
                         return;
                     }
-                    Extractor = new LibIOZipExtractor(logger, inputFile, extract_options);
+                    else
+                    {
+                        bool overwrite = extract_options.ContainsKey("Overwrite") ? true : false;
+                        FileInfo outputFile = new FileInfo((string) extract_options["OutputFile"]);
+                        if (outputFile.Exists && !overwrite)
+                        {
+                            L.Information("The output file {file} exists and the --overwrite option was not specified.", outputFile.FullName);
+                            return;
+                        }
+                        else if (outputFile.Exists && overwrite)
+                        {
+                            L.Information("Overwriting output file {file}.", outputFile.FullName);
+                            outputFile.Delete();
+                        }
+                        Extractor = new LibIOZipExtractor(logger, inputFile, extract_options);
+                    }
+                    
                 }
             }
             else
